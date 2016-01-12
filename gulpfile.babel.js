@@ -23,6 +23,13 @@ gulp.task('scripts', () => {
     .pipe(gulp.dest('./dist'))
 });
 
+// Version bump
+gulp.task('bump', function() {
+    gulp.src('./bower.json')
+        .pipe($.bump())
+        .pipe(gulp.dest('./'));
+})
+
 // Watch scripts
 gulp.task('serve', () => {
   gulp.watch([
