@@ -1,6 +1,7 @@
 {
   "name": "notie-dist",
   "description": "A clean and simple notification plugin (alert/growl style) for javascript, with no dependencies.",
+  "version": "1.1.1",
   "main": "notie.js",
   "authors": [
     "Amila Welihinda"
