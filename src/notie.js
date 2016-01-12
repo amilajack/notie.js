@@ -19,9 +19,9 @@ var notie = function(){
     // *********************************************
     
     // General
-    var shadow = true;
+    var shadow = false;
     var font_size_small = '18px';
-    var font_size_big = '24px';
+    var font_size_big = '20px';
     var font_change_screen_width = 600;
     var animation_delay = 0.3;
     var background_click_dismiss = true;
@@ -184,7 +184,8 @@ var notie = function(){
     
     var alert_inner = document.createElement('div');
     alert_inner.id = alert_inner_id;
-    alert_inner.style.padding = '20px';
+    alert_inner.style.padding = '0px';
+    alert_inner.style.height = '60px';
     alert_inner.style.display = 'table-cell';
     alert_inner.style.verticalAlign = 'middle';
     alert_outer.appendChild(alert_inner);
