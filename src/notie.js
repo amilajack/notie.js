@@ -17,7 +17,7 @@ var notie = function(){
 
     // SETTINGS
     // *********************************************
-    
+
     // General
     var shadow = false;
     var font_size_small = '18px';
@@ -25,12 +25,12 @@ var notie = function(){
     var font_change_screen_width = 600;
     var animation_delay = 0.3;
     var background_click_dismiss = true;
-    
+
     // notie.alert colors
     var alert_color_success_background = '#57BF57';
     var alert_color_warning_background = '#E3B771';
     var alert_color_error_background = '#E1715B';
-    var alert_color_info_background = '#4D82D6';
+    var alert_color_info_background = '#BD9655';
     var alert_color_text = '#FFF';
 
     // notie.confirm colors
@@ -40,7 +40,7 @@ var notie = function(){
     var confirm_and_input_color_text = '#FFF';
     var confirm_and_input_color_yes_text = '#FFF';
     var confirm_and_input_color_no_text = '#FFF';
-    
+
     // ID's for use within your own .css file (OPTIONAL)
     // (Be sure to use !important to override the javascript)
     // Example: #notie-alert-inner { padding: 30px !important; }
@@ -65,23 +65,23 @@ var notie = function(){
     var input_text_id = 'notie-input-text';
     var input_yes_text_id = 'notie-input-yes-text';
     var input_no_text_id = 'notie-input-no-text';
-    
+
     // *********************************************
-    
-    
-    
-    
-    
+
+
+
+
+
     // HELPERS
     // *********************************************
-    
+
     // Function for resize listeners for font-size
     var resizeListener = function resizeListener(ele) {
         if (window.innerWidth <= font_change_screen_width) { ele.style.fontSize = font_size_small; }
         else { ele.style.fontSize = font_size_big; }
     };
-    
-    
+
+
     // Debounce function (credit to Underscore.js)
     var debounce_time = 500;
     var debounce = function debounce(func, wait, immediate) {
@@ -98,8 +98,8 @@ var notie = function(){
             if (callNow) func.apply(context, args);
         };
     }
-    
-    
+
+
     // Event listener for enter and escape keys
     window.addEventListener('keydown', function(event) {
         var enter_clicked = (event.which == 13 || event.keyCode == 13);
@@ -128,8 +128,8 @@ var notie = function(){
             }
         }
     });
-    
-    
+
+
     // addEventListener polyfill, fixes a style.height issue for IE8
     if (typeof Element.prototype.addEventListener === 'undefined') {
         Element.prototype.addEventListener = Window.prototype.addEventListener = function (e, callback) {
@@ -152,9 +152,9 @@ var notie = function(){
         document.body.style.overflow = original_body_overflow;
     }
     // *********************************************
-    
-    
-    
+
+
+
     // NOTIE.ALERT
     // *********************************************
 
@@ -174,14 +174,14 @@ var notie = function(){
     alert_outer.style.WebkitTransition = '';
     alert_outer.style.transition = '';
     alert_outer.style.cursor = 'pointer';
-    
+
     // Hide alert on click
     alert_outer.onclick = function() {
         clearTimeout(alert_timeout_1);
         clearTimeout(alert_timeout_2);
         alert_hide();
     };
-    
+
     var alert_inner = document.createElement('div');
     alert_inner.id = alert_inner_id;
     alert_inner.style.padding = '0px';
@@ -189,7 +189,7 @@ var notie = function(){
     alert_inner.style.display = 'table-cell';
     alert_inner.style.verticalAlign = 'middle';
     alert_outer.appendChild(alert_inner);
-    
+
     // Initialize notie text
     var alert_text = document.createElement('span');
     alert_text.id = alert_text_id;
@@ -210,7 +210,7 @@ var notie = function(){
     var was_clicked_counter = 0;
 
     function alert(type, message, seconds) {
-        
+
         // Blur active element for use of enter key, focus input
         document.activeElement.blur();
 
@@ -310,7 +310,7 @@ var notie = function(){
             alert_outer.style.MozTransition = '';
             alert_outer.style.WebkitTransition = '';
             alert_outer.style.transition = '';
-            
+
             alert_outer.style.top = '-10000px';
 
             alert_is_showing = false;
@@ -355,7 +355,7 @@ var notie = function(){
     confirm_background.style.WebkitTransition = 'all ' + animation_delay + 's ease';
     confirm_background.style.transition = 'all ' + animation_delay + 's ease';
     confirm_background.style.opacity = '0';
-    
+
     // Hide notie.confirm on background click
     confirm_background.onclick = function() {
         if (background_click_dismiss) {
@@ -428,10 +428,10 @@ var notie = function(){
     var confirm_is_showing = false;
 
     function confirm(title, yes_text, no_text, yes_callback) {
-        
+
         // Blur active element for use of enter key
         document.activeElement.blur();
-        
+
         if (alert_is_showing) {
             // Hide notie.alert
             clearTimeout(alert_timeout_1);
@@ -443,7 +443,7 @@ var notie = function(){
         else {
             confirm_show(title, yes_text, no_text, yes_callback);
         }
-        
+
 
     }
     function confirm_show(title, yes_text, no_text, yes_callback) {
@@ -513,7 +513,7 @@ var notie = function(){
             confirm_outer.style.WebkitTransition = '';
             confirm_outer.style.transition = '';
             confirm_background.style.display = 'none';
-            
+
             confirm_outer.style.top = '-10000px';
 
             scroll_enable();
@@ -523,10 +523,10 @@ var notie = function(){
         }, (animation_delay * 1000 + 10));
 
     }
-    
-    
-    
-    
+
+
+
+
     // NOTIE.INPUT
     // *********************************************
 
@@ -559,7 +559,7 @@ var notie = function(){
     input_background.style.WebkitTransition = 'all ' + animation_delay + 's ease';
     input_background.style.transition = 'all ' + animation_delay + 's ease';
     input_background.style.opacity = '0';
-    
+
     // Hide notie.input on background click
     input_background.onclick = function() {
         if (background_click_dismiss) {
@@ -576,7 +576,7 @@ var notie = function(){
     input_inner.style.cursor = 'default';
     input_inner.style.backgroundColor = confirm_and_input_color_background;
     input_outer.appendChild(input_inner);
-    
+
     var input_div = document.createElement('div');
     input_div.id = input_div_id;
     input_div.style.boxSizing = 'border-box';
@@ -586,9 +586,9 @@ var notie = function(){
     input_div.style.cursor = 'default';
     input_div.style.backgroundColor = '#FFF';
     input_outer.appendChild(input_div);
-    
+
     var input_field = document.createElement('input');
-    input_field.id = input_field_id;    
+    input_field.id = input_field_id;
     input_field.setAttribute('autocomplete', 'off');
     input_field.setAttribute('autocorrect', 'off');
     input_field.setAttribute('autocapitalize', 'off');
@@ -663,16 +663,16 @@ var notie = function(){
     var input_is_showing = false;
 
     function input(title, submit_text, cancel_text, type, placeholder, submit_callback, prefilled_value_optional) {
-        
+
         // Blur active element for use of enter key, focus input
         document.activeElement.blur();
         setTimeout(function() { input_field.focus(); }, (animation_delay * 1000));
-        
+
         input_field.setAttribute('type', type);
         input_field.setAttribute('placeholder', placeholder);
         input_field.value = '';
         if (typeof prefilled_value_optional !== 'undefined' && prefilled_value_optional.length > 0) { input_field.value = prefilled_value_optional }
-        
+
         if (alert_is_showing) {
             // Hide notie.alert
             clearTimeout(alert_timeout_1);
@@ -753,7 +753,7 @@ var notie = function(){
             input_outer.style.WebkitTransition = '';
             input_outer.style.transition = '';
             input_background.style.display = 'none';
-            
+
             input_outer.style.top = '-10000px';
 
             scroll_enable();
@@ -763,9 +763,9 @@ var notie = function(){
         }, (animation_delay * 1000 + 10));
 
     }
-    
-    
-    
+
+
+
     return {
         alert: alert,
         confirm: confirm,
