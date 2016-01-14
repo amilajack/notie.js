@@ -19,7 +19,7 @@ var notie = function(){
     // *********************************************
 
     // General
-    var shadow = false;
+    var shadow = true;
     var font_size_small = '18px';
     var font_size_big = '20px';
     var font_change_screen_width = 600;
